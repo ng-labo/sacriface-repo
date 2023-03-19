@@ -11,7 +11,12 @@ jobs:
          name: "prepare"
          command: |
             sudo apt update
-            sudo apt -q install -y python2-minimal
+            sudo apt -q install -y python2-minimal ant
+            ln -s /usr/bin/python2 $HOME/bin/python
+      - run:
+         name: "build play1"
+         command: |
+            sh prepare-play1.sh
       - run:
           name: "sbt compile"
           command: |

@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  python: circleci/python@2.7.17
+  python: circleci/python@1.0.0
 jobs:
   build:
     docker:
@@ -8,8 +8,15 @@ jobs:
     steps:
       - checkout
       - run:
-        -name: "sbt compile"
-        -command: |
-          cat /dev/null | sbt compile
+         name: "prepare"
+         command: |
+            sudo apt update
+            sudo apt -q install -y python2-minimal
+      - run:
+          name: "sbt compile"
+          command: |
+            cat /dev/null | sbt compile
 workflows:
   build:
+    jobs:
+      - build

@@ -1,12 +1,15 @@
 version: 2.1
+orbs:
+  python: circleci/python@2.7.17
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: circleci/openjdk:8-jdk
-    environment:
-      JVM_OPTS: -Xmx512m
-      TERM: dumb
+      - image: cimg/openjdk:11.0
     steps:
       - checkout
-      - run: cat /dev/null | sbt compile
+      - run:
+        -name: "sbt compile"
+        -command: |
+          cat /dev/null | sbt compile
+workflows:
+  build:

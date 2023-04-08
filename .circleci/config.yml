@@ -13,7 +13,7 @@ jobs:
          name: "prepare"
          command: |
             sudo apt update
-            sudo apt -q install -y python2-minimal ant
+            sudo apt -q install -y python2-minimal ant xvfb
             ln -s /usr/bin/python2 $HOME/bin/python
       - run:
          name: "build play1"
@@ -24,6 +24,7 @@ jobs:
       - run:
           name: "sbt test for play2"
           command: |
+            Xvfb &
             (cd play2app; cat /dev/null | DISPLAY=:0 sbt test)
 workflows:
   build:

@@ -21,7 +21,7 @@ jobs:
             ls play1*
 	  - run:
           name: "fire-dri"
-          (cd play2app; curl https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz | tar xf -)
+          (cd play2app; curl https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz | tar zxf -)
       - run:
           name: "sbt test for play2"
           command: |

@@ -19,15 +19,12 @@ jobs:
          name: "build play1"
          command: |
             sh prepare-play1.sh
-            ls play1*
-      - run:
-         name: "fire-dri"
-         command: |
-            (cd play2app; curl -L https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz  | tar zxf -)
+            ls
+            ls play1-*/framework
       - run:
           name: "sbt test for play2"
           command: |
-            (cd play2app; cat /dev/null | sbt test)
+            (cd play2app; cat /dev/null | DISPLAY=:0 sbt test)
 workflows:
   build:
     jobs:

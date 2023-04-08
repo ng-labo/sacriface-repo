@@ -1,5 +1,5 @@
 #!/bin/sh
-PLAYVERSION=1.4.6
+PLAYVERSION=1.3.4
 
 PLAYDIR=play1-$PLAYVERSION
 if [ ! -d $PLAYDIR ]; then

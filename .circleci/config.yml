@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   python: circleci/python@1.0.0
+  browser-tools: circleci/browser-tools@1.4.1
 jobs:
   build:
     docker:
@@ -17,10 +18,14 @@ jobs:
          name: "build play1"
          command: |
             sh prepare-play1.sh
+            ls play1*
+	  - run:
+          name: "fire-dri"
+          (cd play2app; curl https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz | tar xf -)
       - run:
-          name: "sbt compile"
+          name: "sbt test for play2"
           command: |
-            cat /dev/null | sbt compile
+            (cd play2app; cat /dev/null | sbt test)
 workflows:
   build:
     jobs:
